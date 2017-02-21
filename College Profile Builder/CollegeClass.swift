@@ -15,7 +15,7 @@ class CollegeClass: NSObject
     var numberOfStudents = ""
     var image = UIImage(named: "default")
     
-    init(College:String, Location:String, NumberOfStudents:String, Image:UIImage)
+    init(College: String, Location: String, NumberOfStudents: String, Image: UIImage)
     {
         college = College
         location = Location

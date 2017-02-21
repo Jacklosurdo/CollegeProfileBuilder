@@ -12,7 +12,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 {
     @IBOutlet weak var myTableView: UITableView!
     var myCollegeObject:[CollegeClass] = []
-    
+     
 
     override func viewDidLoad()
     {
@@ -20,6 +20,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         myCollegeObject.append(CollegeClass(College: "Loyola", Location: "Chicago", NumberOfStudents: "15,902", Image: UIImage(named: "loyola")!))
         myCollegeObject.append(CollegeClass(College: "La Crosse", Location: "La Crosse", NumberOfStudents: "10,669", Image: UIImage(named: "laCrosse")!))
         myCollegeObject.append(CollegeClass(College: "Madison", Location: "Madison", NumberOfStudents: "42,598", Image: UIImage(named: "madison")!))
+    }
+    override func viewDidAppear(_ animated: Bool)
+    {
+        myTableView.reloadData()
     }
 
     @IBAction func addButtonTapped(_ sender: Any)
@@ -66,12 +70,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
 
-     func perpare(for segue: UIStoryboardSegue, sender: Any?)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         let detailView = segue.destination as! DetailedViewController
         let selectedRow = myTableView.indexPathForSelectedRow?.row
         detailView.collegeDetail = myCollegeObject[selectedRow!]
     }
+    
 
 
 

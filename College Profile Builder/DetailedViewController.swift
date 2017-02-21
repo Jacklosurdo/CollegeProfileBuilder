@@ -20,6 +20,7 @@ class DetailedViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        print(collegeDetail.college, collegeDetail.location)
         myImageview.image = collegeDetail.image
         collegeTextField.text = collegeDetail.college
         locationTextField.text = collegeDetail.location
@@ -28,7 +29,10 @@ class DetailedViewController: UIViewController
 
     @IBAction func saveButtonTapped(_ sender: Any)
     {
-        
+        collegeDetail.image = myImageview.image
+        collegeDetail.college = collegeTextField.text!
+        collegeDetail.location = locationTextField.text!
+        collegeDetail.numberOfStudents = numberOfStudentsTextField.text!
     }
     
     
