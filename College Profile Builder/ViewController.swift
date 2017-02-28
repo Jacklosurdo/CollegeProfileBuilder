@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate
 {
@@ -17,9 +18,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        myCollegeObject.append(CollegeClass(College: "Loyola", Location: "Chicago", NumberOfStudents: "15,902", Image: UIImage(named: "loyola")!))
-        myCollegeObject.append(CollegeClass(College: "La Crosse", Location: "La Crosse", NumberOfStudents: "10,669", Image: UIImage(named: "laCrosse")!))
-        myCollegeObject.append(CollegeClass(College: "Madison", Location: "Madison", NumberOfStudents: "42,598", Image: UIImage(named: "madison")!))
+        myCollegeObject.append(CollegeClass(College: "Loyola", Location: "Chicago", NumberOfStudents: "15,902", Image: UIImage(named: "loyola")!, WebSite:"http://www.luc.edu/"))
+        myCollegeObject.append(CollegeClass(College: "La Crosse", Location: "La Crosse", NumberOfStudents: "10,669", Image: UIImage(named: "laCrosse")!, WebSite:"https://www.uwlax.edu/"))
+        myCollegeObject.append(CollegeClass(College: "Madison", Location: "Madison", NumberOfStudents: "42,598", Image: UIImage(named: "madison")!, WebSite:"http://www.wisc.edu/"))
     }
     override func viewDidAppear(_ animated: Bool)
     {
@@ -31,16 +32,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let alert = UIAlertController(title: "Add a College", message: nil, preferredStyle: .alert)
         alert.addTextField { (collegeTextField) in collegeTextField.placeholder = "Add College Here"}
         alert.addTextField { (locationTextField) in locationTextField.placeholder = "Add Location of College"}
+        alert.addTextField { (webSiteTextField) in webSiteTextField.placeholder = "Add College URL"}
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alert.addAction(cancelAction)
         
         let addAction = UIAlertAction(title: "Add College", style: .default)
         {
-            (action) in let collegeTextField = alert.textFields?[0]
+            (action) in
+            let collegeTextField = alert.textFields?[0]
             let locationTextField = alert.textFields?[1]
+            let webSiteTextField = alert.textFields?[2]
             
-            self.myCollegeObject.append(CollegeClass(College: (collegeTextField?.text)!, Location: (locationTextField?.text)!))
+            self.myCollegeObject.append(CollegeClass(College: (collegeTextField?.text)!, Location: (locationTextField?.text)!, WebSite: (webSiteTextField?.text)!))
             self.myTableView.reloadData()
         }
         alert.addAction(addAction)
@@ -76,6 +80,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let selectedRow = myTableView.indexPathForSelectedRow?.row
         detailView.collegeDetail = myCollegeObject[selectedRow!]
     }
+    
+    
+
     
 
 

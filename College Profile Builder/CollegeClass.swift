@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class CollegeClass: NSObject
 {
@@ -14,19 +15,22 @@ class CollegeClass: NSObject
     var location = ""
     var numberOfStudents = ""
     var image = UIImage(named: "default")
+    var webSite = ""
     
-    init(College: String, Location: String, NumberOfStudents: String, Image: UIImage)
+    init(College: String, Location: String, NumberOfStudents: String, Image: UIImage, WebSite: String)
     {
         college = College
         location = Location
         numberOfStudents = NumberOfStudents
         image = Image
+        webSite = WebSite
     }
     
-    init(College:String, Location:String)
+    init(College:String, Location:String, WebSite:String)
     {
         college = College
         location = Location
+        webSite = WebSite
     }
 
 }
